@@ -1,6 +1,7 @@
 package main;
 
 import model.Pion;
+import utilitaires.Move;
 import utilitaires.SetupPlateau;
 import utilitaires.Utilitaires;
 
@@ -12,6 +13,12 @@ public class Game {
     ArrayList<Pion> allPion = new ArrayList<Pion>();
 
     public void run() {
+        setup();
+        int ch = 6;
+        Move.MovePion(ch, plateau, allPion);
+    }
+
+    public void setup(){
         createPion();
         SetupPlateau.fillPlateau(plateau);
         SetupPlateau.addPionToPlateau(allPion, plateau);
