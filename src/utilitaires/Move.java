@@ -15,7 +15,6 @@ public class Move {
     public static boolean canMove(int ch, char[][] plateau, ArrayList<Pion> allPion){
         Coordinate co = new Coordinate();
         Utilitaires.transformToCoordinate(ch, plateau, co);
-        System.out.println("y: " + co.getY() + "\nx: " + co.getX());
         return true;
     }
 

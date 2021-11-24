@@ -33,7 +33,7 @@ public class Game {
 
             }
             else{
-                allPion.add(new Pion('w', x, y));
+                allPion.add(new Pion('n', x, y));
 
             }
 
