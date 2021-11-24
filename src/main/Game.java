@@ -2,7 +2,7 @@ package main;
 
 import model.Coordinate;
 import model.Pion;
-import utilitaires.Move;
+import utilitaires.move.Move;
 import utilitaires.SetupPlateau;
 import utilitaires.Utilitaires;
 

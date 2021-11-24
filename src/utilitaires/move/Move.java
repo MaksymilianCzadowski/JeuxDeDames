@@ -1,7 +1,8 @@
-package utilitaires;
+package utilitaires.move;
 
 import model.Coordinate;
 import model.Pion;
+import utilitaires.Utilitaires;
 
 import java.util.ArrayList;
 
