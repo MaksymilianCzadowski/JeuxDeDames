@@ -2,6 +2,8 @@ package utilitaires;
 
 import model.Coordinate;
 
+import java.util.Scanner;
+
 public class Utilitaires {
 
     public static void printPlateau(char[][] plateau) {
@@ -25,19 +27,21 @@ public class Utilitaires {
         }
     }
 
-    public static void transformToCoordinate(int ch, char[][] plateau, Coordinate co) {
-        int temp = 0;
-        for(int i = 0; i < plateau.length; ++i){
-            for(int j = 0; j < plateau.length; ++j){
-                if(plateau[i][j] == 'b' || plateau[i][j] == 'w'){
-                    ++temp;
-                    if(temp == ch){
-                        co.setY(i);
-                        co.setX(j);
-                        break;
-                    }
-                }
-            }
-        }
+    public static void getChoice(Coordinate co) {
+        final String separateur = " ";
+
+        Scanner scanner = new Scanner(System.in);
+        String choice = scanner.nextLine();
+
+        String coordonnee[] = choice.split(separateur);
+
+        co.setY(Integer.parseInt(coordonnee[1]));
+        co.setX(letterToIndex(coordonnee[0]));
     }
+
+    private static int letterToIndex(String s) {
+        char c = s.charAt(0);
+        return c - 65;
+    }
+
 }

@@ -1,5 +1,6 @@
 package main;
 
+import model.Coordinate;
 import model.Pion;
 import utilitaires.Move;
 import utilitaires.SetupPlateau;
@@ -11,11 +12,31 @@ public class Game {
 
     char[][] plateau = new char[12][12];
     ArrayList<Pion> allPion = new ArrayList<Pion>();
+    Coordinate pionTomove = new Coordinate();
+    char turnTo = 'b';
+    int turn = 1;
+    boolean gameOn = true;
 
     public void run() {
         setup();
-        int ch = 6;
-        Move.MovePion(ch, plateau, allPion);
+        do {
+            newTurn();
+            Move.MovePion(pionTomove, plateau, allPion, turnTo);
+            Utilitaires.printPlateau(plateau);
+
+        }while (gameOn);
+    }
+
+    private void newTurn() {
+        turn+=1;
+        switch (turn%2){
+            case 1:
+                turnTo = 'n';
+                break;
+            case 0:
+                turnTo = 'b';
+                break;
+        }
     }
 
     public void setup(){
