@@ -11,7 +11,7 @@ public class Move {
     public static void MovePion(Coordinate coo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo) {
         boolean move = true;
         Coordinate nextCoo = new Coordinate();
-        System.out.print("Coordonné du pion à bouger (ex: D 2) : ");
+        System.out.print("Coordonné du pion à bouger (ex: B 4) : ");
         Utilitaires.getChoice(coo);
         do{
             if(isPion(coo,plateau, turnTo)){
@@ -22,8 +22,8 @@ public class Move {
                     move = false;
                 }
             }else{
-                System.out.println("Les coordonnée rentrées ne correspondent pas à l'un de vos pions !" +
-                        "Veuillez réessayer svp.");
+                System.out.print("Les coordonnée rentrées ne correspondent pas à l'un de vos pions ! \n" +
+                        "Veuillez réessayer svp :");
                 Utilitaires.getChoice(coo);
             }
 
