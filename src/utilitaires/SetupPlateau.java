@@ -1,6 +1,6 @@
 package utilitaires;
 
-import model.Pion;
+import model.Pawn;
 
 import java.util.ArrayList;
 
@@ -21,9 +21,9 @@ public class SetupPlateau {
         }
     }
 
-    public static void addPionToPlateau(ArrayList<Pion> allPion, char[][] plateau) {
-        for (Pion p : allPion) {
-            plateau[p.getY()][p.getX()] = p.getName();
+    public static void addPionToPlateau(ArrayList<Pawn> allPawn, char[][] plateau) {
+        for (Pawn p : allPawn) {
+            plateau[p.getY()][p.getX()] = p.getColor();
         }
     }
 }

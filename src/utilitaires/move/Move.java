@@ -1,28 +1,28 @@
 package utilitaires.move;
 
 import model.Coordinate;
-import model.Pion;
+import model.Pawn;
 import utilitaires.Utilitaires;
 
 import java.util.ArrayList;
 
 
 public class Move {
-    public static void MovePion(Coordinate coo, char[][] plateau, ArrayList<Pion> allPion, char turnTo) {
+    public static void MovePion(Coordinate coo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo) {
         boolean move = true;
         Coordinate nextCoo = new Coordinate();
         System.out.print("Coordonné du pion à bouger (ex: D 2) : ");
         Utilitaires.getChoice(coo);
         do{
-            if(isPion(coo,plateau)){
+            if(isPion(coo,plateau, turnTo)){
                 System.out.print("Où voulez vous le faire bouger : ");
                 Utilitaires.getChoice(nextCoo);
-                if(canMove(nextCoo, plateau, coo, turnTo)){
-                    newCooOfPoin(coo,nextCoo,plateau,allPion, turnTo);
+                if(canMove(nextCoo, plateau, coo)){
+                    newCooOfPoin(coo,nextCoo,plateau, allPawn, turnTo);
                     move = false;
                 }
             }else{
-                System.out.println("Les coordonnée rentrées ne correspondent pas à un pion !" +
+                System.out.println("Les coordonnée rentrées ne correspondent pas à l'un de vos pions !" +
                         "Veuillez réessayer svp.");
                 Utilitaires.getChoice(coo);
             }
@@ -31,33 +31,18 @@ public class Move {
         while (move);
     }
 
-    private static void newCooOfPoin(Coordinate coo, Coordinate nextCoo, char[][] plateau, ArrayList<Pion> allPion, char turnTo) {
-        int index = 0;
-        for (Pion c : allPion) {
-            ++index;
-            if(index == getPionFromCoo(coo,plateau,turnTo)){
+    private static void newCooOfPoin(Coordinate coo, Coordinate nextCoo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo) {
+        for (Pawn c : allPawn) {
+            if(c.getX() == coo.getX() && c.getY() == coo.getY()){
                 c.setY(nextCoo.getY());
                 c.setX(nextCoo.getX());
                 plateau[coo.getY()][coo.getX()] = ' ';
-                plateau[nextCoo.getY()][nextCoo.getX()] = c.getName();
+                plateau[nextCoo.getY()][nextCoo.getX()] = c.getColor();
             }
         }
     }
 
-    private static int getPionFromCoo( Coordinate coo, char[][] plateau, char turnTo) {
-        int nbPiont = 0;
-
-        for(int i = 0; i < plateau.length; ++i){
-            for(int j = 0; j < plateau.length; ++j){
-                if(plateau[i][j] == turnTo){
-                    ++nbPiont;
-                }
-            }
-        }
-        return nbPiont;
-    }
-
-    private static boolean canMove(Coordinate nextCoo, char[][] plateau, Coordinate coo, char turnTo) {
+    private static boolean canMove(Coordinate nextCoo, char[][] plateau, Coordinate coo) {
         char pion = plateau[coo.getY()][coo.getX()];
 
         if(pion == 'b'){
@@ -86,10 +71,10 @@ public class Move {
             return false;
     }
 
-    public static boolean isPion(Coordinate coo, char[][] plateau){
+    public static boolean isPion(Coordinate coo, char[][] plateau, char turnTo){
         for(int i = 0; i < plateau.length; ++i){
             for(int j = 0; j < plateau.length; ++j){
-                if(coo.getX() == j && coo.getY() == i && (plateau[i][j] == 'b' || plateau[i][j] == 'n')){
+                if(coo.getX() == j && coo.getY() == i && (plateau[i][j] == turnTo)){
                     //System.out.println("i = " + i + " | j = " + j + " | pion = " + plateau[i][j]);
                     return true;
                 }

@@ -1,21 +1,27 @@
 package model;
 
-public class Pion {
-    char name;
+public class Pawn {
+    char color;
     int x,y;
 
-    public Pion(char name, int x, int y) {
-        this.name = name;
+    public Pawn(char color, int x, int y) {
+        this.color = color;
         this.x = x;
         this.y = y;
     }
 
-    public char getName() {
-        return name;
+    public boolean canTakePawn(){
+
+
+        return false;
     }
 
-    public void setName(char name) {
-        this.name = name;
+    public char getColor() {
+        return color;
+    }
+
+    public void setColor(char color) {
+        this.color = color;
     }
 
     public int getX() {
