@@ -25,9 +25,8 @@ public class Game {
         setup();
         do {
             newTurn();
-            System.out.println("au tour des :" + turnTo);
             if(TakePawn.HaveToTakePawn(plateau, turnTo, allPawn)){
-                TakePawn.TakePawn(plateau, turnTo, allPawn);
+                TakePawn.TakePawn(plateau, turnTo, allPawn, p1, p2);
             }else{
                 Move.MovePion(pionTomove, plateau, allPawn, turnTo);
             }

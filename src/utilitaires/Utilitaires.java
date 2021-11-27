@@ -23,8 +23,18 @@ public class Utilitaires {
             for(int j = 0; j < plateau.length; ++j){
                 System.out.print(plateau[i][j]+ " ");
             }
+            if(i < 10){
+                System.out.format("%d  ", i);
+            }else
+                System.out.format("%d ", i);
             System.out.println();
         }
+        System.out.print("   ");
+        for(int i = 1; i <= 12; ++i){
+
+            System.out.format("%c ",c+i);
+        }
+        System.out.println();
     }
 
     public static void getChoice(Coordinate co) {

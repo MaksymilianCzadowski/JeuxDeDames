@@ -1,6 +1,7 @@
 package utilitaires.takePawn;
 
 import model.Pawn;
+import model.Player;
 
 import java.util.ArrayList;
 
@@ -32,32 +33,8 @@ public class TakePawn {
         return false;
     }
 
-    public static void TakePawn(char[][] plateau, char turnTo, ArrayList<Pawn> allPawn) {
+    public static void TakePawn(char[][] plateau, char turnTo, ArrayList<Pawn> allPawn, Player p1, Player p2) {
+
     }
 }
 
-
-
-
-
-
-
-/*
-        for (int i = 0; i < plateau.length; ++i){
-            for (int j = 0; j < plateau.length; ++j){
-                if(plateau[i][j] == turnTo && turnTo == 'b'){
-                    if((plateau[i+1][j+1] == 'n' && plateau[i+2][j+2] == ' ')
-                            || (plateau[i+1][j-1] == 'n' && plateau[i+2][j-2] == ' ')){
-                        return true;
-                    }
-
-
-                }else if(plateau[i][j] == turnTo && turnTo == 'n'){
-                    if((plateau[i-1][j+1] == 'b' && plateau[i-2][j+2] == ' ')
-                            || (plateau[i-1][j-1] == 'n' && plateau[i-2][j-2] == ' ')){
-                        return true;
-                    }
-                }
-            }
-        }
- */
