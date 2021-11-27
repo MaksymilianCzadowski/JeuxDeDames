@@ -25,10 +25,12 @@ public class Game {
         setup();
         do {
             newTurn();
-            //if(TakePawn.HaveToTakePawn(plateau, turnTo, allPawn)){
-              //  System.out.println("Menace pour :" + turnTo);
-            //}
-            Move.MovePion(pionTomove, plateau, allPawn, turnTo);
+            System.out.println("au tour des :" + turnTo);
+            if(TakePawn.HaveToTakePawn(plateau, turnTo, allPawn)){
+                TakePawn.TakePawn(plateau, turnTo, allPawn);
+            }else{
+                Move.MovePion(pionTomove, plateau, allPawn, turnTo);
+            }
             Utilitaires.printPlateau(plateau);
 
         }while (gameOn);
