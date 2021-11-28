@@ -29,6 +29,7 @@ public class Move {
 
         }
         while (move);
+        
     }
 
     private static void newCooOfPoin(Coordinate coo, Coordinate nextCoo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo) {
