@@ -1,6 +1,7 @@
 package model;
 
 public class Player {
+    
     int nbOfPawn = 20;
     char color;
 

@@ -33,6 +33,7 @@ public class Game {
             Utilitaires.printPlateau(plateau);
 
         }while (gameOn);
+        
     }
 
 
@@ -45,6 +46,11 @@ public class Game {
             case 0:
                 turnTo = 'b';
                 break;
+        }
+        if(turnTo == 'b'){
+            System.out.println("Au tour des pions blancs");
+        }else if(turnTo != 'b'){
+            System.out.println("Au tour des pions noirs");
         }
     }
 
