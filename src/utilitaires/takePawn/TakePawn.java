@@ -12,29 +12,31 @@ public class TakePawn {
 
     public static boolean HaveToTakePawn(char[][] plateau, char turnTo, ArrayList<Pawn> allPawn) {
         char c = 65;
+        boolean havaToEat = false;
         if(turnTo == 'b'){
             for (Pawn pw : allPawn) {
                 if(pw.getColor() == 'b'){
                     if((plateau[pw.getY() + 1][pw.getX() - 1] == 'n' && plateau[pw.getY() + 2][pw.getX() - 1] == ' ')
                             || (plateau[pw.getY() + 1][pw.getX() + 1] == 'n' && plateau[pw.getY() + 2][pw.getX() + 1] == ' ')){
-                        c += pw.getX();
-                        System.out.println("Le pion en " + c + " " + pw.getY() + " doit manger un pion");
-                        return true;
+                        //c += pw.getX();
+                        System.out.println("Le pion en " + (char)(c+pw.getX()) + " " + pw.getY() + " doit manger un pion");
+                        havaToEat = true;
                     }
                 }
             }
+            return havaToEat;
         }else if(turnTo == 'n'){
             for (Pawn pw: allPawn) {
                 if(pw.getColor() == 'n'){
                     if((plateau[pw.getY() - 1][pw.getX() - 1] == 'b' && plateau[pw.getY() - 2][pw.getX() - 1] == ' ')
                             || (plateau[pw.getY() - 1][pw.getX() + 1] == 'b' && plateau[pw.getY() - 2][pw.getX() + 1] == ' ')){
-                        c += pw.getX();
-                        System.out.println("Le pion en " + c + pw.getY() + " doit manger un pion");
-                        return true;
+                        //c += pw.getX();
+                        System.out.println("Le pion en " + (char)(c+pw.getX()) + pw.getY() + " doit manger un pion");
+                        havaToEat = true;
                     }
                 }
             }
-
+            return havaToEat;
         }
         return false;
     }
