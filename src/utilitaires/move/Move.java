@@ -3,13 +3,14 @@ package utilitaires.move;
 import data.Data;
 import model.Coordinate;
 import model.Pawn;
+import model.Player;
 import utilitaires.Utilitaires;
 
 import java.util.ArrayList;
 
 
 public class Move {
-    public static void MovePion(Coordinate coo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo, Data data) {
+    public static void MovePion(Coordinate coo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo, Data data, Player p1, Player p2, Data data1) {
         boolean move = true;
         Coordinate nextCoo = new Coordinate();
         System.out.print("Coordonné du pion à bouger : ");
@@ -18,8 +19,8 @@ public class Move {
             if(isPion(coo,plateau, turnTo)){
                 System.out.print("Où voulez vous le faire bouger : ");
                 Utilitaires.getChoice(nextCoo);
-                if(canMove(nextCoo, plateau, coo)){
-                    newCooOfPoin(coo,nextCoo,plateau, allPawn, turnTo);
+                if(canMove(nextCoo, plateau, coo, p1, p2, data)){
+                    newCooOfPoin(coo,nextCoo,plateau, allPawn);
                     move = false;
                 }
             }else{
@@ -33,7 +34,7 @@ public class Move {
         
     }
 
-    private static void newCooOfPoin(Coordinate coo, Coordinate nextCoo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo) {
+    private static void newCooOfPoin(Coordinate coo, Coordinate nextCoo, char[][] plateau, ArrayList<Pawn> allPawn) {
         for (Pawn c : allPawn) {
             if(c.getX() == coo.getX() && c.getY() == coo.getY()){
                 c.setY(nextCoo.getY());
@@ -44,7 +45,7 @@ public class Move {
         }
     }
 
-    public static boolean canMove(Coordinate nextCoo, char[][] plateau, Coordinate coo) {
+    public static boolean canMove(Coordinate nextCoo, char[][] plateau, Coordinate coo, Player p1, Player p2, Data data) {
         char pion = plateau[coo.getY()][coo.getX()];
 
         if(pion == 'b'){
@@ -52,6 +53,7 @@ public class Move {
                     || (nextCoo.getX() == coo.getX()-1 && nextCoo.getY() == coo.getY()+1)){
                 if(plateau[nextCoo.getY()][nextCoo.getX()] != 'b' && plateau[nextCoo.getY()][nextCoo.getX()] != '|'
                         && plateau[nextCoo.getY()][nextCoo.getX()] != '-' && plateau[nextCoo.getY()][nextCoo.getX()] != '+'){
+                    writeMoveInFile(coo,nextCoo,p1,data);
                     return true;
                 }else
                     System.out.println("Mouvement Impossible ! réessayer svp.");
@@ -63,6 +65,7 @@ public class Move {
                     || (nextCoo.getX() == coo.getX()-1 && nextCoo.getY() == coo.getY()-1)){
                 if(plateau[nextCoo.getY()][nextCoo.getX()] != 'n' && plateau[nextCoo.getY()][nextCoo.getX()] != '|'
                     && plateau[nextCoo.getY()][nextCoo.getX()] != '-' && plateau[nextCoo.getY()][nextCoo.getX()] != '+'){
+                    writeMoveInFile(coo,nextCoo,p2,data);
                     return true;
                 }else
                     System.out.println("Mouvement Impossible ! réessayer svp.");
@@ -71,6 +74,14 @@ public class Move {
                 return false;
         }else
             return false;
+    }
+
+    private static void writeMoveInFile(Coordinate coo, Coordinate nextCoo, Player p, Data data) {
+        try {
+            Utilitaires.writeInFile(coo,nextCoo,"-",p,data);
+        }catch (Exception e){
+            System.out.println("Erreur d'écriture dans le fichier");
+        }
     }
 
     public static boolean isPion(Coordinate coo, char[][] plateau, char turnTo){

@@ -32,7 +32,7 @@ public class Game {
             if(TakePawn.HaveToTakePawn(plateau, turnTo, allPawn)){
                 TakePawn.TakePawn(plateau, turnTo, allPawn, p1, p2, data);
             }else{
-                Move.MovePion(pionTomove, plateau, allPawn, turnTo, data);
+                Move.MovePion(pionTomove, plateau, allPawn, turnTo, data, p1, p2, data);
             }
             Utilitaires.printPlateau(plateau);
 

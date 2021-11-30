@@ -5,8 +5,10 @@ import model.Coordinate;
 import model.Player;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utilitaires {
@@ -59,20 +61,32 @@ public class Utilitaires {
         return c - 65;
     }
 
-    public static void writeInFile(Coordinate coo, Coordinate nextCoo, String signe, Player p, Data data) throws IOException {
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(data.getFileName()));
-
-        StringBuffer str = new StringBuffer();
+    public static void writeInFile(Coordinate coo, Coordinate nextCoo, String signe, Player p, Data data) {
 
         String text = p.getName() + " move " + (char)(coo.getX()+65) + " " + coo.getY() +
                 " " + signe + " " + (char)(nextCoo.getX()+65) + " " + nextCoo.getY();
 
-        str.append(text);
-        str.append("\n");
-        str.delete(str.length()-1, str.length());
-        writer.write(str.toString());
-        writer.close();
+        try
+        {
+            FileWriter fw = new FileWriter(data.getFileName(),true);
+            fw.write(text + "\n");
+            fw.close();
+        }
+        catch(IOException ioe)
+        {
+            System.err.println("IOException: " + ioe.getMessage());
+        }
+
+    }
+
+    public static ArrayList<String> readFile(String fileName) throws IOException{
+        ArrayList<String> allText = new ArrayList<String>();
+
+        Scanner scanner = new Scanner(new File(fileName));
+        while(scanner.hasNextLine()) {
+            allText.add(scanner.nextLine());
+        }
+        return allText;
     }
 
 }

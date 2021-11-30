@@ -113,11 +113,13 @@ public class TakePawn {
         plateau[coo.getY()][coo.getX()] = ' ';
         plateau[nextCoo.getY()][nextCoo.getX()] = turnTo;
         allPawn.remove(index);
-        Utilitaires.printPlateau(plateau);
         if(HaveToTakePawn(plateau, turnTo,allPawn)){
+            Utilitaires.printPlateau(plateau);
             TakePawn(plateau,turnTo,allPawn,p1,p2, data);
-        }else if(canContinueToMve(plateau, nextCoo)){ // à ce moment nextcoo correspond aux coordonnées présente
-            Move.MovePion(nextCoo,plateau,allPawn,turnTo, data);
+        }else if(canContinueToMve(plateau, nextCoo)){
+            System.out.println("il peut");
+            Utilitaires.printPlateau(plateau);
+            Move.MovePion(nextCoo,plateau,allPawn,turnTo, data, p1, p2, data);// à ce moment nextcoo correspond aux coordonnées présente
         }
     }
 
@@ -130,10 +132,10 @@ public class TakePawn {
     }
 
     private static boolean canContinueToMve(char[][] plateau, Coordinate nextCoo) {
-        if(plateau[nextCoo.getY()+1][nextCoo.getX()+1] != ' ' || plateau[nextCoo.getY()+1][nextCoo.getX()-1] != ' ' ){
-            return false;
-        }else
+        if(plateau[nextCoo.getY()+1][nextCoo.getX()+1] == ' ' || plateau[nextCoo.getY()+1][nextCoo.getX()-1] == ' ' ){
             return true;
+        }else
+            return false;
     }
 
     private static int findIndexToDelete(ArrayList<Pawn> allPawn, Coordinate cooToDelete, Player p1, Player p2, char color) {
