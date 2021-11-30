@@ -24,7 +24,6 @@ public class Game {
 
     public void run() {
         Start.menu(p1, p2);
-        Start.menu(p1,p2);
         setup();
         do {
             newTurn();

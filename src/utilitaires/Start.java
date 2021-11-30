@@ -54,7 +54,7 @@ public class Start {
 
     private static void createFile(Player p1, Player p2) {
         try {
-            String fileName = p1.getName() + "_VS_" + p2.getName() + ".txt";
+            String fileName = "./History of game/" + p1.getName() + "_VS_" + p2.getName() + ".txt";
             File myObj = new File(fileName);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
