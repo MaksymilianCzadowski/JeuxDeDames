@@ -4,6 +4,15 @@ public class Player {
     
     int nbOfPawn = 20;
     char color;
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Player(char color) {
         this.color = color;

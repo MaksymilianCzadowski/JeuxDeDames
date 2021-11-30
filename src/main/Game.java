@@ -3,6 +3,7 @@ package main;
 import model.Coordinate;
 import model.Pawn;
 import model.Player;
+import utilitaires.Start;
 import utilitaires.move.Move;
 import utilitaires.takePawn.TakePawn;
 import utilitaires.SetupPlateau;
@@ -22,6 +23,8 @@ public class Game {
     boolean gameOn = true;
 
     public void run() {
+        Start.menu(p1, p2);
+        Start.menu(p1,p2);
         setup();
         do {
             newTurn();
