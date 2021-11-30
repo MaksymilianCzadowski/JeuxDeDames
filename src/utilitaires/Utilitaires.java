@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Utilitaires {
@@ -49,6 +50,7 @@ public class Utilitaires {
 
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
+        choice = choice.toUpperCase();
 
         String coordonnee[] = choice.split(separateur);
 
