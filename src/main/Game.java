@@ -1,5 +1,6 @@
 package main;
 
+import data.Data;
 import model.Coordinate;
 import model.Pawn;
 import model.Player;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 public class Game {
 
+    Data data = new Data();
     Player p1 = new Player('b');
     Player p2 = new Player('n');
     char[][] plateau = new char[12][12];
@@ -23,14 +25,14 @@ public class Game {
     boolean gameOn = true;
 
     public void run() {
-        Start.menu(p1, p2);
+        Start.menu(p1, p2, data);
         setup();
         do {
             newTurn();
             if(TakePawn.HaveToTakePawn(plateau, turnTo, allPawn)){
-                TakePawn.TakePawn(plateau, turnTo, allPawn, p1, p2);
+                TakePawn.TakePawn(plateau, turnTo, allPawn, p1, p2, data);
             }else{
-                Move.MovePion(pionTomove, plateau, allPawn, turnTo);
+                Move.MovePion(pionTomove, plateau, allPawn, turnTo, data);
             }
             Utilitaires.printPlateau(plateau);
 

@@ -1,7 +1,12 @@
 package utilitaires;
 
+import data.Data;
 import model.Coordinate;
+import model.Player;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Utilitaires {
@@ -52,6 +57,22 @@ public class Utilitaires {
     private static int letterToIndex(String s) {
         char c = s.charAt(0);
         return c - 65;
+    }
+
+    public static void writeInFile(Coordinate coo, Coordinate nextCoo, String signe, Player p, Data data) throws IOException {
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(data.getFileName()));
+
+        StringBuffer str = new StringBuffer();
+
+        String text = p.getName() + " move " + (char)(coo.getX()+65) + " " + coo.getY() +
+                " " + signe + " " + (char)(nextCoo.getX()+65) + " " + nextCoo.getY();
+
+        str.append(text);
+        str.append("\n");
+        str.delete(str.length()-1, str.length());
+        writer.write(str.toString());
+        writer.close();
     }
 
 }

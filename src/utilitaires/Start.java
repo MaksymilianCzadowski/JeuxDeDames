@@ -1,5 +1,6 @@
 package utilitaires;
 
+import data.Data;
 import model.Player;
 
 import java.io.File;
@@ -7,12 +8,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Start {
-    public static void menu(Player p1, Player p2) {
+    public static void menu(Player p1, Player p2, Data data) {
         boolean menuOn = true;
         do {
             System.out.println("Le jeud de dames se lance !" +
                     "\n [1] Player vs Player" +
-                    "\n [2] Player vs un bot incroyable" +
+                    "\n [2] Player vs un bot (coming soon)" +
                     "\n [3] Règles du jeux" +
                     "\n [4] Quitter le jeux");
 
@@ -48,14 +49,14 @@ public class Start {
 
         }while (menuOn);
 
-        createFile(p1, p2);
+        createFile(p1, p2, data);
 
     }
 
-    private static void createFile(Player p1, Player p2) {
+    private static void createFile(Player p1, Player p2, Data data) {
         try {
-            String fileName = "./History of game/" + p1.getName() + "_VS_" + p2.getName() + ".txt";
-            File myObj = new File(fileName);
+            data.setFileName("./History of game/" + p1.getName() + "_VS_" + p2.getName() + ".txt");
+            File myObj = new File(data.getFileName());
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {

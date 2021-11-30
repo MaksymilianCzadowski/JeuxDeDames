@@ -1,5 +1,6 @@
 package utilitaires.move;
 
+import data.Data;
 import model.Coordinate;
 import model.Pawn;
 import utilitaires.Utilitaires;
@@ -8,10 +9,10 @@ import java.util.ArrayList;
 
 
 public class Move {
-    public static void MovePion(Coordinate coo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo) {
+    public static void MovePion(Coordinate coo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo, Data data) {
         boolean move = true;
         Coordinate nextCoo = new Coordinate();
-        System.out.print("Coordonné du pion à bouger (ex: B 4) : ");
+        System.out.print("Coordonné du pion à bouger : ");
         Utilitaires.getChoice(coo);
         do{
             if(isPion(coo,plateau, turnTo)){
@@ -43,7 +44,7 @@ public class Move {
         }
     }
 
-    private static boolean canMove(Coordinate nextCoo, char[][] plateau, Coordinate coo) {
+    public static boolean canMove(Coordinate nextCoo, char[][] plateau, Coordinate coo) {
         char pion = plateau[coo.getY()][coo.getX()];
 
         if(pion == 'b'){
