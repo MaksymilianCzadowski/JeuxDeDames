@@ -41,9 +41,22 @@ public class Move {
                 c.setX(nextCoo.getX());
                 plateau[coo.getY()][coo.getX()] = ' ';
                 plateau[nextCoo.getY()][nextCoo.getX()] = c.getColor();
+                checkIfCanBeKing(c);
+                break;
             }
         }
     }
+
+    private static void checkIfCanBeKing(Pawn c) {
+        if(c.getY() == 10 && c.getColor() == 'b'){
+            c.setColor('B');
+        }
+
+        if(c.getY() == 1 && c.getColor() == 'n'){
+            c.setColor('N');
+        }
+    }
+
 
     public static boolean canMove(Coordinate nextCoo, char[][] plateau, Coordinate coo, Player p1, Player p2, Data data) {
         char pion = plateau[coo.getY()][coo.getX()];
@@ -104,7 +117,6 @@ public class Move {
             Utilitaires.getChoice(nextCoo);
             if (canMove(nextCoo, plateau, coo, p1, p2, data)){
                 newCooOfPoin(coo, nextCoo, plateau, allPawn);
-                System.out.println(nextCoo);
                 move = false;
             }else{
                 System.out.println("Mouvement Impossible ! réessayer svp.");

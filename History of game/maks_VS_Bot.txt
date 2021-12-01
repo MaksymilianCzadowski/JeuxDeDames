@@ -1,0 +1,3 @@
+maks move F 4 - G 5
+Bot move I 7 - H 6
+maks move G 5 x I 7

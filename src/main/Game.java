@@ -35,6 +35,10 @@ public class Game {
                 Move.MovePion(pionTomove, plateau, allPawn, turnTo, data, p1, p2, data);
             }
             Utilitaires.printPlateau(plateau);
+            if(Utilitaires.checkIfGameIsFinish(p1,p2)){
+                gameOn = false;
+            }
+
 
         }while (gameOn);
         

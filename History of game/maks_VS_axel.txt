@@ -1,0 +1,6 @@
+maks move F 4 - G 5
+axel move I 7 - H 6
+maks move G 5 x I 7
+maks move H 8 x J 6
+axel move J 6 - K 5
+maks move H 4 - G 5

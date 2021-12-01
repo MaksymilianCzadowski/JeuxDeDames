@@ -47,15 +47,20 @@ public class Utilitaires {
 
     public static void getChoice(Coordinate co) {
         final String separateur = " ";
+        try {
+            Scanner scanner = new Scanner(System.in);
+            String choice = scanner.nextLine();
+            choice = choice.toUpperCase();
 
-        Scanner scanner = new Scanner(System.in);
-        String choice = scanner.nextLine();
-        choice = choice.toUpperCase();
+            String coordonnee[] = choice.split(separateur);
+            co.setY(Integer.parseInt(coordonnee[1]));
+            co.setX(letterToIndex(coordonnee[0]));
+        }catch (Exception e){
+            System.out.println("Erreur de saisie");
+        }
 
-        String coordonnee[] = choice.split(separateur);
 
-        co.setY(Integer.parseInt(coordonnee[1]));
-        co.setX(letterToIndex(coordonnee[0]));
+
     }
 
     private static int letterToIndex(String s) {
@@ -81,4 +86,10 @@ public class Utilitaires {
 
     }
 
+    public static boolean checkIfGameIsFinish(Player p1, Player p2) {
+        if(p1.getNbOfPawn() <= 0 ||p2.getNbOfPawn() <= 0){
+            return true;
+        }
+        return false;
+    }
 }
