@@ -95,5 +95,21 @@ public class Move {
         }
         return false;
     }
+
+    public static void movePawnAfterCatch(Coordinate coo, Coordinate nextCoo, char[][] plateau, ArrayList<Pawn> allPawn, char turnTo, Data data, Player p1, Player p2, Data data1) {
+        boolean move = true;
+        //System.out.println((char)(coo.getX()+65) + " " + nextCoo.getY());
+        System.out.print("Où voulez vous le faire bouger "+ (char)(coo.getX()+65) + coo.getY() +" : ");
+        do {
+            Utilitaires.getChoice(nextCoo);
+            if (canMove(nextCoo, plateau, coo, p1, p2, data)){
+                newCooOfPoin(coo, nextCoo, plateau, allPawn);
+                System.out.println(nextCoo);
+                move = false;
+            }else{
+                System.out.println("Mouvement Impossible ! réessayer svp.");
+            }
+        }while (move);
+    }
 }
 

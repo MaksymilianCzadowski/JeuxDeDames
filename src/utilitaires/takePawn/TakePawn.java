@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class TakePawn {
 
+
     public static boolean HaveToTakePawn(char[][] plateau, char turnTo, ArrayList<Pawn> allPawn) {
         char c = 65;
         boolean havaToEat = false;
@@ -115,12 +116,30 @@ public class TakePawn {
         allPawn.remove(index);
         if(HaveToTakePawn(plateau, turnTo,allPawn)){
             Utilitaires.printPlateau(plateau);
-            TakePawn(plateau,turnTo,allPawn,p1,p2, data);
+            anotherEat(plateau, nextCoo,coo, allPawn, p1, p2, turnTo, data);
         }else if(canContinueToMve(plateau, nextCoo)){
-            System.out.println("il peut");
+            coo.setY(nextCoo.getY());
+            coo.setX(nextCoo.getX());
             Utilitaires.printPlateau(plateau);
-            Move.MovePion(nextCoo,plateau,allPawn,turnTo, data, p1, p2, data);// à ce moment nextcoo correspond aux coordonnées présente
+            Move.movePawnAfterCatch(nextCoo, coo, plateau,allPawn,turnTo,data,p1,p2,data);// à ce moment nextcoo correspond aux coordonnées présente
         }
+    }
+
+    private static void anotherEat(char[][] plateau, Coordinate coo, Coordinate nextCoo, ArrayList<Pawn> allPawn, Player p1, Player p2, char turnTo, Data data) {
+        boolean eatpawn = true;
+        System.out.print("Où vouler vous bouger :");
+        do {
+            Utilitaires.getChoice(nextCoo);
+            if (canEatPawn(plateau,nextCoo, coo,turnTo)){
+                eatPawn(plateau, coo, nextCoo, allPawn, p1, p2, turnTo, data);
+                //System.out.println((char)(coo.getX()+65) + " " + nextCoo.getY());
+                eatpawn = false;
+            }else{
+                System.out.print("Les coordonnées rentrée pour faire une prise sont incorrect !\n" +
+                        "Veuillez réessayer svp : ");
+            }
+        }while (eatpawn);
+
     }
 
     private static void writeEatInFile(Coordinate coo, Coordinate nextCoo, Player p, Data data) {

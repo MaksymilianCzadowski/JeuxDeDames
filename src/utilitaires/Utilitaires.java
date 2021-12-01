@@ -81,14 +81,4 @@ public class Utilitaires {
 
     }
 
-    public static ArrayList<String> readFile(String fileName) throws IOException{
-        ArrayList<String> allText = new ArrayList<String>();
-
-        Scanner scanner = new Scanner(new File(fileName));
-        while(scanner.hasNextLine()) {
-            allText.add(scanner.nextLine());
-        }
-        return allText;
-    }
-
 }
